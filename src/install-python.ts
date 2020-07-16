@@ -69,6 +69,9 @@ export async function installCpythonFromRelease(release: tc.IToolRelease) {
 
   core.info('Execute installation script');
   await installPython(pythonExtractedFolder);
+
+  core.info(`pythonPath "${pythonPath}"`);
+  core.info(`pythonExtractedFolder "${pythonExtractedFolder}"`);
 }
 
 function isGhes(): boolean {
