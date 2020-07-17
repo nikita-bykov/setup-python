@@ -660,12 +660,12 @@ function installCpythonFromRelease(release) {
         core.info('Extract downloaded archive');
         let pythonExtractedFolder;
         if (IS_WINDOWS) {
-            pythonExtractedFolder = yield tc.extractZip(pythonPath, `${tempDir}`);
+            pythonExtractedFolder = yield tc.extractZip(pythonPath, `${tempDir}/${fileName}`);
         }
         else {
-            pythonExtractedFolder = yield tc.extractTar(pythonPath, `./${fileName}`);
+            pythonExtractedFolder = yield tc.extractTar(pythonPath, `${tempDir}/${fileName}`);
         }
-        core.info(`tempDir "${tempDir}"`);
+        core.info(`pythonPath "${pythonPath}"`);
         core.info(`pythonPath "${pythonPath}"`);
         core.info(`pythonExtractedFolder "${pythonExtractedFolder}"`);
         core.info('Execute installation script');
