@@ -55,7 +55,6 @@ async function installPython(workingDirectory: string) {
 
 export async function installCpythonFromRelease(release: tc.IToolRelease) {
   const downloadUrl = release.files[0].download_url;
-  const tempDir = process.env['RUNNER_TEMP'];
 
   core.info(`Download from "${downloadUrl}"`);
   const pythonPath = await tc.downloadTool(downloadUrl, undefined, AUTH);
@@ -63,20 +62,10 @@ export async function installCpythonFromRelease(release: tc.IToolRelease) {
   core.info('Extract downloaded archive');
   let pythonExtractedFolder;
   if (IS_WINDOWS) {
-    pythonExtractedFolder = await tc.extractZip(
-      pythonPath,
-      `${tempDir}/${fileName}_unzipped`
-    );
+    pythonExtractedFolder = await tc.extractZip(pythonPath);
   } else {
-    pythonExtractedFolder = await tc.extractTar(
-      pythonPath,
-      `${tempDir}/${fileName}_unzipped`
-    );
+    pythonExtractedFolder = await tc.extractTar(pythonPath);
   }
-
-  core.info(`pythonPath "${pythonPath}"`);
-  core.info(`pythonPath "${pythonPath}"`);
-  core.info(`pythonExtractedFolder "${pythonExtractedFolder}"`);
 
   core.info('Execute installation script');
   await installPython(pythonExtractedFolder);

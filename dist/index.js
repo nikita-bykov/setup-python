@@ -653,21 +653,17 @@ function installPython(workingDirectory) {
 function installCpythonFromRelease(release) {
     return __awaiter(this, void 0, void 0, function* () {
         const downloadUrl = release.files[0].download_url;
-        const tempDir = process.env['RUNNER_TEMP'];
         core.info(`Download from "${downloadUrl}"`);
         const pythonPath = yield tc.downloadTool(downloadUrl, undefined, AUTH);
         const fileName = path.basename(pythonPath, '.zip');
         core.info('Extract downloaded archive');
         let pythonExtractedFolder;
         if (IS_WINDOWS) {
-            pythonExtractedFolder = yield tc.extractZip(pythonPath, `${tempDir}/${fileName}_unzipped`);
+            pythonExtractedFolder = yield tc.extractZip(pythonPath);
         }
         else {
-            pythonExtractedFolder = yield tc.extractTar(pythonPath, `${tempDir}/${fileName}_unzipped`);
+            pythonExtractedFolder = yield tc.extractTar(pythonPath);
         }
-        core.info(`pythonPath "${pythonPath}"`);
-        core.info(`pythonPath "${pythonPath}"`);
-        core.info(`pythonExtractedFolder "${pythonExtractedFolder}"`);
         core.info('Execute installation script');
         yield installPython(pythonExtractedFolder);
     });
