@@ -9,14 +9,14 @@ jobs:
     name: Test setup-python
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: ./
       - name: before
         run: |
           ls
           ls $GITHUB_WORKSPACE
           du -hc ./
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: ./
         with:
           python-version: 3.8.0
       - name: after
