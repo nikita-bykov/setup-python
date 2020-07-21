@@ -1,26 +1,22 @@
-name: Validate 'setup-python'
-on:
-  pull_request_review_comment:
-    types: [created, edited, deleted]
-  issue_comment:
-    types: [created, edited, deleted]
+name: Test setup-python workspace
+on: push
 jobs:
   test:
-    name: Setup python
-    runs-on: [ubuntu-latest]
+    name: Test setup-python
+    runs-on: [self-hosted, linux]
     steps:
-    - uses: actions/checkout@v2
-    - name: before
-      run: |
-        ls
-        ls $GITHUB_WORKSPACE
-        du -hc ./
-    - name: setup python
-      uses: actions/setup-python@v2.1.1
-      with:
-        python-version: 3.8.0
-    - name: after
-      run: |
-        ls
-        ls $GITHUB_WORKSPACE
-        du -hc ./
+      - uses: actions/checkout@v2
+      - name: before
+        run: |
+          ls
+          ls $GITHUB_WORKSPACE
+          du -hc ./
+      - name: setup python
+        uses: actions/setup-python@v2.1.1
+        with:
+          python-version: 3.8.0
+      - name: after
+        run: |
+          ls
+          ls $GITHUB_WORKSPACE
+          du -hc ./
