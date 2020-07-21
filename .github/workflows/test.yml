@@ -1,4 +1,4 @@
-name: Test
+name: Validate 'setup-python'
 on:
   pull_request_review_comment:
     types: [created, edited, deleted]
@@ -6,17 +6,16 @@ on:
     types: [created, edited, deleted]
 jobs:
   test:
-    name: Test setup-python
+    name: Test setup
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v2
     - name: before
       run: |
         ls
         ls $GITHUB_WORKSPACE
         du -hc ./
     - name: setup python
-      uses: ./
+      uses: actions/setup-python@v2.1.1
       with:
         python-version: 3.8.0
     - name: after
@@ -24,3 +23,4 @@ jobs:
         ls
         ls $GITHUB_WORKSPACE
         du -hc ./
+
