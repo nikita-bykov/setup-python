@@ -1,4 +1,4 @@
-name: Test setup-python workspace
+name: Test
 on:
   pull_request_review_comment:
     types: [created, edited, deleted]
@@ -9,18 +9,18 @@ jobs:
     name: Test setup-python
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
-      - name: before
-        run: |
-          ls
-          ls $GITHUB_WORKSPACE
-          du -hc ./
-      - name: setup python
-        uses: ./
-        with:
-          python-version: 3.8.0
-      - name: after
-        run: |
-          ls
-          ls $GITHUB_WORKSPACE
-          du -hc ./
+    - uses: actions/checkout@v2
+    - name: before
+      run: |
+        ls
+        ls $GITHUB_WORKSPACE
+        du -hc ./
+    - name: setup python
+      uses: ./
+      with:
+        python-version: 3.8.0
+    - name: after
+      run: |
+        ls
+        ls $GITHUB_WORKSPACE
+        du -hc ./
