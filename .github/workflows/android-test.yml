@@ -1,0 +1,15 @@
+name: android
+on: push
+jobs:
+  test:
+    name: Test setup
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: NDK Cache
+        id: ndk-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/local/lib/android/sdk/ndk
+          key: ndk-cache-21.0.6113669
+
