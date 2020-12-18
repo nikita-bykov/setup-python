@@ -32,14 +32,14 @@ jobs:
     - name: Run simple python code
       run: python -c 'import math; print(math.factorial(5))'
 
-  setup-versions-from-manifest:
+  setup-python:
     name: Setup ${{ matrix.python }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-16.04, ubuntu-18.04]
-        python: [2.7, 3.5, 3.6, 3.7, 3.8, 3.9]
+        python: [2.7.18, 3.5.10, 3.6.12, 3.7.9, 3.8.6, 3.9.1]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
