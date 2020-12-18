@@ -2,7 +2,7 @@ name: Validate 'setup-python'
 on: 
   push:
     branches:
-      - improve-find-python-on-windows-test
+      - improve-find-python-on-windows-test 
     paths-ignore:
       - '**.md'
   pull_request:
