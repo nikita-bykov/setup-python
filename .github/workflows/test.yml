@@ -52,7 +52,7 @@ jobs:
     - name: Validate version
       run: |
         $pythonVersion = (python --version)
-        if ("Python $pythonVersion" -notlike "${{ matrix.python }}.*"){
+        if ("$pythonVersion" -notlike "Python ${{ matrix.python }}.*"){
           Write-Host "The current version is $pythonVersion; expected version is ${{ matrix.python }}"
           exit 1
         }
